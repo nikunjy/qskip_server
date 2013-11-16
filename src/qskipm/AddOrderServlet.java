@@ -44,11 +44,11 @@ public class AddOrderServlet extends HttpServlet {
 				owner.orders = new ArrayList<String>();
 			}
 			owner.orders.add(order.orderId);
-			
 			DbUtils.saveOwner(owner); 
 			DbUtils.saveUser(user);
 			order.seq = owner.activeOrders;
 			order.productId = productId;
+			order.ownerId = owner.ownerId;
 			DbUtils.saveOrder(order);
 			Gson g = new Gson(); 
 			resp.getWriter().println(g.toJson(order));

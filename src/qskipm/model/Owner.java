@@ -19,6 +19,7 @@ public class Owner {
 	public String ownerName;
 	public Date creationDate;
 	public String payId;
+	public String imageUrl;
 	public int activeOrders;
 	@Load public List<String> orders;
 	@Load  public List<String> products;

@@ -22,7 +22,13 @@ public class ModifyProductServlet extends HttpServlet {
 		String ownerId = req.getParameter("ownerId");
 		if (arg.equalsIgnoreCase("add")) {
 			String name = req.getParameter("name");
-			Product product = new Product(ownerId);  
+			double price = Double.parseDouble(req.getParameter("price"));
+			String description = req.getParameter("desc");
+			Product product = new Product(ownerId);
+			System.out.println(name+" "+price+" "+description+" "+price);
+			product.name=name;
+			product.price=price;
+			product.description = description;
 			Owner owner = DbUtils.getOwner(ownerId);
 			if (owner.products == null) { 
 				owner.products = new ArrayList<String>();
@@ -37,7 +43,7 @@ public class ModifyProductServlet extends HttpServlet {
 			List<Product> products = DbUtils.getProducts(owner, false);
 			resp.getWriter().println(new Gson().toJson(products));
 			return;
-		}else {
+		} else {
 			String productId = req.getParameter("productId");
 			List<Product> products = DbUtils.getProducts(ownerId, false);
 			for (Product product : products) {

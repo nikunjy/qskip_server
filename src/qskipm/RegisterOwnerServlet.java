@@ -19,6 +19,7 @@ public class RegisterOwnerServlet extends HttpServlet {
 		String lat = req.getParameter("lat");
 		String lon = req.getParameter("long");
 		String payId = req.getParameter("payId");
+		String imageUrl = req.getParameter("imageUrl");
 		double latitude = 0.0; 
 		double longitude = 0.0; 
 		if (lat != null) { 
@@ -31,6 +32,7 @@ public class RegisterOwnerServlet extends HttpServlet {
 			throw new Exception("");
 		}
 		Owner owner = new Owner(ownerName,latitude, longitude);
+		owner.imageUrl = imageUrl;
 		owner.payId = payId;
 		DbUtils.saveOwner(owner);
 		JsonObject json = new JsonObject(); 

@@ -19,6 +19,7 @@ public class Order {
 	public long seq;
 	public String productId;
 	public Date creationDate;
+	public String ownerId;
 	public Order(String userId,String productId) { 
 		UUID id = UUID.randomUUID(); 
 		orderId = id.toString();

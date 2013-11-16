@@ -14,7 +14,7 @@ public class Product {
 	public String productId;
 	public String name; 
 	public String description; 
-	public String price;
+	public Double price;
 	public boolean isActive;
 	public Product(String ownerId) { 
 		UUID id = UUID.randomUUID(); 

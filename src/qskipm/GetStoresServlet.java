@@ -2,6 +2,7 @@ package qskipm;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -13,18 +14,19 @@ import qskipm.model.Stores;
 import qskipm.utils.DbUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class GetStoresServlet extends HttpServlet {
 
-	private double deg2rad(double deg) {
+	static private double deg2rad(double deg) {
 		return (deg * Math.PI / 180.0);
 	}
 
-	private double rad2deg(double rad) {
+	static private double rad2deg(double rad) {
 		return (rad * 180.0 / Math.PI);
 	}
-	private double distance(double lat1, double lon1, double lat2, double lon2) {
+	static public double distance(double lat1, double lon1, double lat2, double lon2) {
 		double theta = lon1 - lon2;
 		double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
 		dist = Math.acos(dist);
@@ -35,7 +37,8 @@ public class GetStoresServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		try {
-			String arg = req.getParameter("arg"); 
+			String arg = req.getParameter("arg");
+			
 			if (arg!=null) { 
 				if (arg.equalsIgnoreCase("all")) {
 					List<Owner> stores = DbUtils.getAllStores();
@@ -48,12 +51,14 @@ public class GetStoresServlet extends HttpServlet {
 						s.storeId = store.ownerId;
 						s.latitude = store.latitude; 
 						s.longitude = store.longitude;
+						s.imageUrl = store.imageUrl;
 						s.name  = store.ownerName;
 						s.seq = store.activeOrders;
 						ret.add(s); 
 					}
+					Collections.sort(ret);
 					Gson g = new Gson(); 
-					resp.getWriter().println(ret);
+					resp.getWriter().println(g.toJson(ret));
 					return;
 				}
 			}
@@ -72,11 +77,13 @@ public class GetStoresServlet extends HttpServlet {
 					s.distance = dist;
 					s.latitude = store.latitude;
 					s.storeId = store.ownerId;
+					s.imageUrl = store.imageUrl;
 					s.longitude = store.longitude;
 					s.name  = store.ownerName;
 					s.seq = store.activeOrders;
 					ret.add(s); 
 				}
+				Collections.sort(ret);
 				Gson g = new Gson(); 
 				System.out.println(g.toJson(store) +" "+dist);
 			}
