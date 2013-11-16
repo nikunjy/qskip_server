@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>GetStoresServlet</servlet-name>
+		<servlet-class>qskipm.GetStoresServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetStoresServlet</servlet-name>
+		<url-pattern>/getStores</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RegisterUserServlet</servlet-name>
+		<servlet-class>qskipm.RegisterUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterUserServlet</servlet-name>
+		<url-pattern>/registerUser</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ModifyProductServlet</servlet-name>
+		<servlet-class>qskipm.ModifyProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModifyProductServlet</servlet-name>
+		<url-pattern>/modifyProduct</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddOrderServlet</servlet-name>
+		<servlet-class>qskipm.AddOrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddOrderServlet</servlet-name>
+		<url-pattern>/addOrder</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GetOrdersServlet</servlet-name>
+		<servlet-class>qskipm.GetOrdersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetOrdersServlet</servlet-name>
+		<url-pattern>/getOrders</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RegisterOwnerServlet</servlet-name>
+		<servlet-class>qskipm.RegisterOwnerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterOwnerServlet</servlet-name>
+		<url-pattern>/registerOwner</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Qskip</servlet-name>
+		<servlet-class>qskipm.QskipServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Qskip</servlet-name>
+		<url-pattern>/qskip</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
